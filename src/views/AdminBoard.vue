@@ -1,10 +1,9 @@
 <template>
-  <div class="Admin">
-      <h1>Admin</h1>
-      <div class="bg-black text-white">
+  <div class="overflow-x-auto">
+    <div class="min-w-screen min-h-screen bg-gray-100 flex items-center flex-col justify-center bg-gray-100 font-sans overflow-hidden">
           <UserCreate />
           <UserList />
-      </div>
+    </div>
   </div>
 </template>
 

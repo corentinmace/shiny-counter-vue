@@ -16,8 +16,8 @@ const routes = [
     component: Edit
   },
   {
-    path: '/create',
-    name: 'Create',
+    path: '/login',
+    name: 'login',
     component: Login
   },
   {

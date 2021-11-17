@@ -26,6 +26,20 @@ export const getUser = async id => {
     return user.exists ? user.data() : null
 }
 
+export const checkUser = async email => {
+    // const user = await usersCollection.doc(email).get()
+    // console.log("firebase", user)
+    // return user.exists ? user.data() : null
+    app.auth().getUserByEmail(email)
+  .then(function(userRecord) {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully fetched user data:', userRecord.toJSON());
+  })
+  .catch(function(error) {
+   console.log('Error fetching user data:', error);
+  });
+}
+
 export const updateUser = (id, user) => {
     return usersCollection.doc(id).update(user)
 }
