@@ -9,10 +9,6 @@ export default defineConfig({
       svgoConfig: {
         multipass: true
       }
-    })],
-    // build: {
-    //   outDir : '../buildApp'
-    // }
-  
+    })]
 })
 
