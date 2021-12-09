@@ -1,4 +1,5 @@
 <template>
+
 <div class="w-screen h-screen flex flex-col flex-wrap p-3">
   <div class="mx-auto w-2/3">
     <!-- Profile Card -->
@@ -21,6 +22,13 @@
       </div>
     </div>
     <!-- End Profile Card -->
+
+    <div class="my-5 text-white font-bold">
+      <p>Total Hunts : {{ totalHunts }}</p>
+      <p>Hunts in progress : {{ runningHunts }}</p>
+      <p>Hunts on hold : {{ holdHunts }}</p>
+      <p>Finished Hunts : {{ finishedHunts }}</p>
+    </div>
  
   </div>
 </div>
@@ -29,27 +37,70 @@
 
 </template>
 
-<script setup>
+<script>
+
   import { ref, watchEffect } from 'vue' // used for conditional rendering
   import { getAuth, onAuthStateChanged } from 'firebase/auth'
   import { useRouter } from 'vue-router'
-  const router = useRouter()
-  const isLoggedIn = ref(true)
-  const displayName = ref('')
-  const auth = getAuth()
-  // runs after firebase is initialized
-  auth.onAuthStateChanged(function(user) {
-      if (user) {
-        console.log(user)
-        displayName.value = user.displayName
-        isLoggedIn.value = true // if we have a user
-      } else {
-        isLoggedIn.value = false // if we do not
+  import { getFirestore , doc, getDocs, collection, query, where, orderBy} from 'firebase/firestore'
+  
+
+export default {
+  setup() {
+
+      const uid = ref('')
+      const router = useRouter()
+      const isLoggedIn = ref(true)
+      const displayName = ref('')
+      const auth = getAuth()
+      const hunts = ref()
+      const totalHunts = ref(0)
+      const runningHunts = ref(0)
+      const holdHunts = ref(0)
+      const finishedHunts = ref(0)
+
+      // runs after firebase is initialized
+      auth.onAuthStateChanged(function(user) {
+          if (user) {
+            console.log(user)
+            uid.value = user.uid
+            displayName.value = user.displayName
+            isLoggedIn.value = true // if we have a user
+              const db = getFirestore();
+              const HuntRef = collection(db, 'hunts')
+              const totalHuntsQuery = query(HuntRef,where('user','==', uid.value ))
+        
+              getDocs(totalHuntsQuery)
+                .then((response) => {
+                    hunts.value = response.docs.map((doc, id) => {
+                        return doc.data();
+                    })
+
+                    console.log(hunts.value)
+                    totalHunts.value = hunts.value.length
+
+                    for (let i = 0; i < hunts.value.length; i++) {
+                      if(hunts.value[i].status === 'running') {
+                        runningHunts.value++
+                      } else if (hunts.value[i].status === 'hold') {
+                        holdHunts.value++
+                      } else if (hunts.value[i].status === 'ended') {
+                        finishedHunts.value++
+                      }
+                      
+                    }
+                })
+          } else {
+            isLoggedIn.value = false // if we do not
+          }
+      })
+      const signOut = () => {
+        auth.signOut()
+        router.push('/')
       }
-  })
-  const signOut = () => {
-    auth.signOut()
-    router.push('/')
+
+      return { totalHunts, runningHunts, holdHunts, finishedHunts, signOut, isLoggedIn, displayName}
   }
+}
 
 </script>

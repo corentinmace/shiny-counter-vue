@@ -1,14 +1,14 @@
 <template>
-    <div class="h-screen flex justify-center items-center">
-        <div class="w-1/2 bg-gray-500 text-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-10">
+        <div class="w-screen h-screen flex justify-center p-10 flex-col">
+            <h1 class="text-xl font-bold text-white text-center mb-5">Log-in</h1>
             <div class="mb-6">
-                <label class="block text-sm font-bold mb-2" for="username">
+                <label class="block text-white text-sm font-bold mb-2" for="username">
                     Email
                 </label>
                 <input v-model="email" class="mt-1 block text-black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="username" type="email">
             </div>
             <div class="mb-6">
-                <label class="block text-sm font-bold mb-2" for="password">
+                <label class="block text-white text-sm font-bold mb-2" for="password">
                     Password
                 </label>
                 <input v-model="password" class="mt-1 block text-black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="password" type="password">
@@ -26,7 +26,6 @@
                 </a> -->
             </div>
         </div>  
-    </div>
 </template>
 
 <script setup>

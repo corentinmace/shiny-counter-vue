@@ -1,4 +1,18 @@
 <template>
+        <div v-if="showModal">
+            <div class="flex justify-center items-center antialiased fixed backdrop-filter backdrop-blur-sm w-full h-full z-10" @click.self="toggleModal">
+                <div class=" bg-gray-800 text-white flex flex-col w-1/2 mx-auto rounded-lg shadow-xl">
+                    <div class="flex flex-col justify-between p-6 rounded-tl-lg rounded-tr-lg">
+                        <div class="flex flex-row justify-between rounded-tl-lg rounded-tr-lg">
+                            <p class="text-sm font-bold mb-5">Enter your new number :</p>
+                            <p class="font-semibold cursor-pointer" @click="toggleModal">X</p>
+                        </div>
+                        <input type="text" class="text-black block w-full mt-1 rounded-md gray-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" v-model="counter">
+                        <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold my-2 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="updateCounter">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="flex justify-center items-center py-10 flex-col z-0">
         <div class="m-5 w-full">
             <div class="m-3 z-0 flex justify-center">
@@ -19,7 +33,7 @@
                             <img class="w-20 h-20 rounded-full z-0" :src="sprite" alt="">
                         </div>
                         <div>
-                            <p class="text-white font-bold text-3xl">{{counter}}</p>
+                            <p @dblclick="toggleModal" class="text-white font-bold text-3xl">{{counter}}</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-evenly my-10">
@@ -35,15 +49,15 @@
                         <form class="flex w-full justify-evenly" action="">
                         
                             <label class="flex flex-col justify-center items-center text-white text-sm font-bold" for="running">
-                                <input type="radio" class="running mb-3" name="runStatus" @click="updateStatus('running')" id="running">
+                                <input type="radio" class="running mb-3" name="runStatus" @click="updateStatus('running')" id="running" :checked="status == 'running'">
                                 Running
                             </label>
                             <label class="flex flex-col justify-center items-center text-white text-sm font-bold" for="hold">
-                                <input type="radio" class="hold mb-3" name="runStatus" @click="updateStatus('hold')" id="hold">
+                                <input type="radio" class="hold mb-3" name="runStatus" @click="updateStatus('hold')" id="hold" :checked="status == 'hold'">
                                 On Hold
                             </label>
                             <label class="flex flex-col justify-center items-center text-white text-sm font-bold" for="ended">
-                                <input type="radio" class="ended mb-3" name="runStatus" @click="updateStatus('ended')" id="ended">
+                                <input type="radio" class="ended mb-3" name="runStatus" @click="updateStatus('ended')" id="ended" :checked="status == 'ended'">
                                 Finished
                                 </label>
                         </form>
@@ -135,12 +149,27 @@ export default {
         const db = getFirestore();
         const HuntRef = collection(db, 'hunts')
         const actualHuntRef = doc(db, 'hunts', route.params.id)
+        const showModal = ref(false)
+        const toggleModal = () => {
+            showModal.value = !showModal.value
+        }
+
+        const updateCounter = async () => {
+            await updateDoc(actualHuntRef, {
+                counter: counter.value
+            })
+            showModal.value = false
+        }
 
         const updateStatus = async (entryStatus) => {
             status.value = entryStatus
             await updateDoc(actualHuntRef, {
                 status: status.value
             })
+        }
+
+        const alertF = () => {
+            alert("oui")
         }
 
         const increaseCounter = async () => {
@@ -195,7 +224,7 @@ export default {
         })
 
    
-           return { sprite, chroma, game, pokemonName, status, counter, increaseCounter, decreaseCounter, updateStatus, deleteHunt }
+           return { sprite, chroma, game, pokemonName, status, counter, increaseCounter, decreaseCounter, updateStatus, deleteHunt, toggleModal, showModal, updateCounter }
             
     }
 }

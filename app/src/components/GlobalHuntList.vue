@@ -14,7 +14,7 @@
                         <img v-if="hunt.chroma" class=" h-8 w-8 z-0" src="https://www.pokepedia.fr/images/6/65/Sprite_Charme_Chroma_NB2.png" alt="">
                     </div>
                 </div>
-                </div>
+            </div>
                 <div class="flex items-center mt-4 text-gray-500 font-bold h-24 justify-between mx-10">
                     <div>
                         <img class="w-20 h-20 rounded-full z-0" :src="hunt.sprite" alt="">
@@ -23,6 +23,7 @@
                         <p class="text-white font-bold text-3xl">{{hunt.counter}}</p>
                     </div>
                 </div>
+                <p class="text-white text-xs font-bold" v-if="hunt.username">Hunter : {{hunt.username}}</p>
             </div>
             </div>
         </div>

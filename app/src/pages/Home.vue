@@ -47,11 +47,19 @@
             </div>
         </div>
     </form>
+
         <button v-if="isLoggedIn" class="bg-blue-500 hover:bg-blue-700 text-white fixed text-5xl h-20 w-20 rounded-full focus:outline-none focus:shadow-outline bottom-5 my-20 right-5" @click="toggleModal">+</button>
     <div class="flex justify-center items-center py-10 flex-col z-0">
         <h1 class="text-white text-4xl m-5">Global Hunts :</h1>
             <GlobalHuntList  />
     </div>
+        <div class="fixed w-screen bottom-20 text-center py-4 lg:px-4" v-if="!isLoggedIn">
+            <div class="p-2 bg-red-800 items-center text-red-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+                <span class="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Alert</span>
+                <span class="font-semibold mr-2 text-left flex-auto">If you want to create a hunt, please <router-link class="text-red-300" to="/sign-in">log-in</router-link> or <router-link class="text-red-300" to="/register">register</router-link></span>
+                <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+            </div>
+        </div>
     
 </template>
 
@@ -61,7 +69,7 @@ import GlobalHuntList from '../components/GlobalHuntList.vue'
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
 import { doc, setDoc, addDoc, updateDoc, getFirestore, collection } from 'firebase/firestore'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, onAuthStateChanged} from 'firebase/auth'
 import { useRoute } from 'vue-router'
 import router from "../router"
 
@@ -76,17 +84,19 @@ import router from "../router"
         setup() {
 
             const uid = ref('')
+            const username = ref('')
             const isLoggedIn = ref(false)
             const auth = getAuth()
+
             // runs after firebase is initialized
             auth.onAuthStateChanged(function(user) {
                 if (user) {
                     isLoggedIn.value = true // if we have a user
                     uid.value = user.uid
+                    username.value = user.displayName
                 } else {
                     isLoggedIn.value = false // if we do not
                 }
-                
             })
             const db = getFirestore();
 
@@ -129,12 +139,13 @@ import router from "../router"
                     status: 'running',
                     sprite: sprite.value,
                     user: uid.value,
+                    username: username.value
                 });
-                console.log("Document written with ID : ", docRef.id)
+                //console.log("Document written with ID : ", docRef.id)
                 await updateDoc(docRef, {
                     id: docRef.id
                 })
-                console.log("updated doc")
+                //console.log("updated doc")
                 router.push({name : 'Hunt' , params: { id: docRef.id }})
 
             }
