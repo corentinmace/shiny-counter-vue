@@ -1,25 +1,17 @@
-<!-- <template>
-  <h1>Login to Your Account</h1>
-  <p><input type="text" placeholder="Email" v-model="email" /></p>
-  <p><input type="password" placeholder="Password" v-model="password" /></p>
-  <p v-if="errMsg">{{ errMsg }}</p>
-  <p><button @click="signIn">Submit</button></p>
-</template> -->
-
 <template>
-    <div class="w-full max-w-xs mx-auto">
-        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-10">
+    <div class="h-screen flex justify-center items-center">
+        <div class="w-1/2 bg-gray-500 text-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-10">
             <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                <label class="block text-sm font-bold mb-2" for="username">
                     Email
                 </label>
-                <input v-model="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="username" type="email">
+                <input v-model="email" class="mt-1 block text-black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="username" type="email">
             </div>
             <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                <label class="block text-sm font-bold mb-2" for="password">
                     Password
                 </label>
-                <input v-model="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="password" type="password">
+                <input v-model="password" class="mt-1 block text-black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="password" type="password">
                 <!-- <p class="text-red-500 text-xs italic">Please choose a password.</p> -->
             </div>
             <div  v-if="errMsg"  class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">

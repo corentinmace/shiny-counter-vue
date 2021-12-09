@@ -2,23 +2,23 @@
    
        <form @submit.prevent="createHunt" v-if="showModal">
             <div class="flex justify-center items-center antialiased fixed backdrop-filter backdrop-blur-sm w-full h-full z-10" @click.self="toggleModal">
-                <div class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl">
-                    <div class="flex flex-row justify-between p-6 bg-white border-b border-gray-200 rounded-tl-lg rounded-tr-lg">
-                        <p class="font-semibold text-gray-800">Create Hunt</p>
-                        <p class="font-semibold text-gray-800 cursor-pointer" @click="toggleModal">X</p>
+                <div class="bg-gray-500 text-white flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg shadow-xl">
+                    <div class="flex flex-row justify-between p-6 rounded-tl-lg rounded-tr-lg">
+                        <p class="font-semibold">Create Hunt</p>
+                        <p class="font-semibold cursor-pointer" @click="toggleModal">X</p>
                     </div>
-                    <div class="flex flex-col px-6 py-5 bg-gray-50">
+                    <div class="flex flex-col px-6 py-5 bg-gray-500">
                         <img class="w-1/4 mx-auto" :src="sprite">
                     <div class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5">
                         <div class="w-full sm:w-1/2">
-                            <p class="mb-2 font-semibold text-gray-700">Pokémon</p>
-                            <select @change="getPokeInfo" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="pokemon" required>
+                            <p class="mb-2 font-semibold">Pokémon</p>
+                            <select @change="getPokeInfo" class="text-black block w-full mt-1 rounded-md gray-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="pokemon" required>
                                 <option v-for="(pokemon, id) of pokemons" :value="pokemon.url">{{ pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1).replace('-', ' ')  }}</option>
                             </select> 
                         </div>
                         <div class="w-full sm:w-1/2 mt-2 sm:mt-0">
-                            <p class="mb-2 font-semibold text-gray-700">Game</p>
-                            <select @change="setGame" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="game" required>
+                            <p class="mb-2 font-semibold">Game</p>
+                            <select @change="setGame" class="text-black block w-full mt-1 rounded-md gray-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="game" required>
                                 <option v-for="(game, id) in games" :value="game.url">{{ game.name.charAt(0).toUpperCase()+game.name.slice(1).replace('-', ' ') }}</option>
                                 <option value="sword">Sword</option>
                                 <option value="sword">Shield</option>
@@ -39,7 +39,7 @@
                         <br />
                     </div>
                 </div>
-                <div class="flex flex-row items-center justify-between p-5 bg-white border-t border-gray-200 rounded-bl-lg rounded-br-lg">
+                <div class="flex flex-row items-center justify-between p-5 rounded-bl-lg rounded-br-lg">
                     <!-- <input type="text" class="hidden" v-model="form.counter">
                     <input type="text" class="hidden" v-model="form.user"> -->
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit">Create</button>
