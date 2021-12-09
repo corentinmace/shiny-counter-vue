@@ -47,11 +47,11 @@
             </div>
         </div>
     </form>
+        <button v-if="isLoggedIn" class="bg-blue-500 hover:bg-blue-700 text-white fixed text-5xl h-20 w-20 rounded-full focus:outline-none focus:shadow-outline bottom-5 my-20 right-5" @click="toggleModal">+</button>
     <div class="flex justify-center items-center py-10 flex-col z-0">
         <h1 class="text-white text-4xl m-5">Global Hunts :</h1>
             <GlobalHuntList  />
     </div>
-    <button v-if="isLoggedIn" class="bg-blue-500 hover:bg-blue-700 text-white absolute text-5xl h-20 w-20 rounded-full focus:outline-none focus:shadow-outline bottom-5 my-20 right-5" @click="toggleModal">+</button>
     
 </template>
 
@@ -60,7 +60,7 @@ import GlobalHuntList from '../components/GlobalHuntList.vue'
 
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
-import { doc, setDoc, addDoc, getFirestore, collection } from 'firebase/firestore'
+import { doc, setDoc, addDoc, updateDoc, getFirestore, collection } from 'firebase/firestore'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 
@@ -129,6 +129,10 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
                     user: uid.value,
                 });
                 console.log("Document written with ID : ", docRef.id)
+                updateDoc(docRef, {
+                    id: docRef.id
+                })
+
             }
 
             onMounted(() => {

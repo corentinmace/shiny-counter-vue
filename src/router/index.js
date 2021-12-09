@@ -4,6 +4,7 @@ import UserHunts from "../pages/UserHunts.vue";
 import SignIn from "../pages/SignIn.vue";
 import Register from "../pages/Register.vue";
 import Profile from "../pages/Profile.vue";
+import Hunt from "../pages/Hunt.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: "/profile",
     name: "Profile", 
     component: Profile 
+   },
+   {
+     path: "/hunt/:id",
+     name: "Hunt", 
+     component: Hunt
    }
 ];
 
