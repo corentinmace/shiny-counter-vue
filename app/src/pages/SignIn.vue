@@ -1,14 +1,16 @@
 <template>
+    <TopBar>
+         <h1 class="text-white font-bold">Log-in</h1>
+    </TopBar>
         <div class="w-screen h-screen flex justify-center p-10 flex-col">
-            <h1 class="text-xl font-bold text-white text-center mb-5">Log-in</h1>
             <div class="mb-6">
-                <label class="block text-white text-sm font-bold mb-2" for="username">
+                <label class="block text-black text-sm font-bold mb-2" for="username">
                     Email
                 </label>
                 <input v-model="email" class="mt-1 block text-black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="username" type="email">
             </div>
             <div class="mb-6">
-                <label class="block text-white text-sm font-bold mb-2" for="password">
+                <label class="block text-black text-sm font-bold mb-2" for="password">
                     Password
                 </label>
                 <input v-model="password" class="mt-1 block text-black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="password" type="password">
@@ -18,7 +20,7 @@
                 <p class="font-bold">{{ errMsg }}</p>
             </div>
                 <div class="flex items-center justify-center">
-                <button @click="signIn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="">
+                <button @click="signIn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="">
                     Login
                 </button>
                 <!-- <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
@@ -28,7 +30,8 @@
         </div>  
 </template>
 
-<script setup>
+<script setup> 
+  import TopBar from "../components/TopBar.vue"
   import { ref } from 'vue'
   import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
   import { useRouter } from 'vue-router' // import router
@@ -40,7 +43,7 @@
   const signIn = () => { // we also renamed this method
     signInWithEmailAndPassword(auth,email.value, password.value) // THIS LINE CHANGED
       .then((data) => {
-        console.log(data)
+        //console.log(data)
         console.log('Successfully logged in!');
         router.push('/') // redirect to the feed
       })

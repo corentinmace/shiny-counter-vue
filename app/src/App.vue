@@ -46,7 +46,7 @@
 
 
 <template>
-<div class="bg-gray-800 fixed bottom-0 w-screen text-white flex justify-evenly h-15 py-3">
+<div class="bg-red-800 fixed bottom-0 w-screen text-white flex justify-evenly h-15 py-3">
       <router-link to="/" active-class="opacity-100" class="lg:mt-0 text-grey-800 hover:text-grey-500 text-xs flex flex-col justify-center items-center opacity-30">
         <HomeIcon class="w-6 h-6 m-1 filter invert" />
         Home

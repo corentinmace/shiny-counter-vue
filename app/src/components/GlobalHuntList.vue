@@ -2,12 +2,12 @@
     <div class="m-5 w-full">
         <div v-for="(hunt, id) in hunts" class=" m-3 z-0 flex justify-center">
           
-            <div class="bg-gray-500 my-2 text-black w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
+            <div class="bg-white my-2 text-black w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
                 <div class="flex items-center justify-between">
                 <div class="flex items-center justify-between w-full space-x-4">
                     <div class="flex flex-row items-center">
                         <div class="rounded-full w-4 h-4" :class="hunt.status"></div>
-                        <div class="text-lg text-white font-bold mx-5">{{hunt.pokemonName.charAt(0).toUpperCase()+hunt.pokemonName.slice(1).replace('-', ' ')}}</div>
+                        <div class="text-lg font-bold mx-5">{{hunt.pokemonName.charAt(0).toUpperCase()+hunt.pokemonName.slice(1).replace('-', ' ')}}</div>
                     </div>
                     <div>
                         <!-- <div>{{hunt.game.version.name.charAt(0).toUpperCase()+hunt.game.version.name.slice(1).replace('-', ' ')}}</div> -->
@@ -15,15 +15,15 @@
                     </div>
                 </div>
             </div>
-                <div class="flex items-center mt-4 text-gray-500 font-bold h-24 justify-between mx-10">
+                <div class="flex items-center mt-4 font-bold h-24 justify-between mx-10">
                     <div>
                         <img class="w-20 h-20 rounded-full z-0" :src="hunt.sprite" alt="">
                     </div>
                     <div>
-                        <p class="text-white font-bold text-3xl">{{hunt.counter}}</p>
+                        <p class="font-bold text-3xl">{{hunt.counter}}</p>
                     </div>
                 </div>
-                <p class="text-white text-xs font-bold" v-if="hunt.username">Hunter : {{hunt.username}}</p>
+                <p class="text-xs font-bold" v-if="hunt.username">Hunter : {{hunt.username}}</p>
             </div>
             </div>
         </div>

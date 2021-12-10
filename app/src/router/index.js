@@ -5,6 +5,7 @@ import SignIn from "../pages/SignIn.vue";
 import Register from "../pages/Register.vue";
 import Profile from "../pages/Profile.vue";
 import Hunt from "../pages/Hunt.vue";
+import Settings from "../pages/Settings.vue";
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
      path: "/hunt/:id",
      name: "Hunt", 
      component: Hunt
+   },
+   {
+     path: "/settings/:id",
+     name: "Settings", 
+     "component" : Settings
    }
 ];
 

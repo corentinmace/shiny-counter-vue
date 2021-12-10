@@ -1,14 +1,17 @@
 <template>
+        <TopBar>
+            <h1 class="text-white font-bold">Hunt : <span class="font-light">{{pokemonName.charAt(0).toUpperCase()+pokemonName.slice(1).replace('-', ' ')}}</span></h1>
+        </TopBar>
         <div v-if="showModal">
             <div class="flex justify-center items-center antialiased fixed backdrop-filter backdrop-blur-sm w-full h-full z-10" @click.self="toggleModal">
-                <div class=" bg-gray-800 text-white flex flex-col w-1/2 mx-auto rounded-lg shadow-xl">
+                <div class=" bg-red-800 text-white flex flex-col w-1/2 mx-auto rounded-lg shadow-xl">
                     <div class="flex flex-col justify-between p-6 rounded-tl-lg rounded-tr-lg">
                         <div class="flex flex-row justify-between rounded-tl-lg rounded-tr-lg">
-                            <p class="text-sm font-bold mb-5">Enter your new number :</p>
+                            <p class="text-sm font-bold mb-5">Enter your new number</p>
                             <p class="font-semibold cursor-pointer" @click="toggleModal">X</p>
                         </div>
-                        <input type="text" class="text-black block w-full mt-1 rounded-md gray-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" v-model="counter">
-                        <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold my-2 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="updateCounter">Update</button>
+                        <input type="text" class="text-black block w-full mt-1 rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" v-model="counter">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold my-2 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="updateCounter">Update</button>
                     </div>
                 </div>
             </div>
@@ -16,7 +19,7 @@
     <div class="flex justify-center items-center py-10 flex-col z-0">
         <div class="m-5 w-full">
             <div class="m-3 z-0 flex justify-center">
-                <div class="bg-gray-500 my-2 text-black w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
+                <div class="bg-red-800 my-2 text-black w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center justify-between w-full space-x-4">
                             <div class="flex flex-row items-center">
@@ -28,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center mt-4 text-gray-500 font-bold h-24 justify-between mx-10">
+                    <div class="flex items-center mt-4 text-red-500 font-bold h-24 justify-between mx-10">
                         <div>
                             <img class="w-20 h-20 rounded-full z-0" :src="sprite" alt="">
                         </div>
@@ -38,13 +41,14 @@
                     </div>
                     <div class="flex items-center justify-evenly my-10">
                         <div>
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white h-10 w-10 rounded-full" @click="increaseCounter">+</button>                       
+                            <button class="bg-white text-red-800 font-bold h-10 w-10 rounded-full" @click="increaseCounter">+</button>                       
                          </div>
                         <div>
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white h-10 w-10 rounded-full" @click="decreaseCounter">-</button>           
+                            <button class="bg-white text-red-800 font-bold h-10 w-10 rounded-full" @click="decreaseCounter">-</button>           
                         </div>
                     </div>
-                    <div class="flex items-center justify-evenly flex-col my-10">
+                        
+                    <div class="flex items-center justify-evenly flex-col my-(">
                         <h1 class="text-lg text-white font-bold my-5">Update hunt status</h1>
                         <form class="flex w-full justify-evenly" action="">
                         
@@ -62,9 +66,10 @@
                                 </label>
                         </form>
                         <h1 class="text-lg text-white font-bold my-5">Delete Hunt</h1>
-                         <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="deleteHunt">Delete</button>
+                         <button class="bg-white text-red-800 font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="deleteHunt">Delete</button>
 
                     </div>
+                <p class="text-center text-xs font-bold text-white my-3">Double tap on the counter to update the number</p>
                 </div>
             </div>
         </div>
@@ -121,7 +126,7 @@ input[type="radio"].ended:checked::after {
 </style>
 
 <script>
-
+import TopBar from "../components/TopBar.vue"
 import PlusIcon from "../assets/icons/plus.svg?component"
 import MinusIcon from "../assets/icons/minus.svg?component"
 import { getFirestore , doc, getDocs, updateDoc, collection, query, where, orderBy, deleteDoc } from 'firebase/firestore'
@@ -134,7 +139,8 @@ import router from "../router"
 export default {
     components: {
         MinusIcon,
-        PlusIcon
+        PlusIcon,
+        TopBar
     },
     setup() {
 

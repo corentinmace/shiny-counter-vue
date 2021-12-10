@@ -1,24 +1,26 @@
 <template>
-   
+       <TopBar>
+             <h1 class="text-white font-bold">Global Hunts</h1>
+        </TopBar>
        <form @submit.prevent="createHunt" v-if="showModal">
             <div class="flex justify-center items-center antialiased fixed backdrop-filter backdrop-blur-sm w-full h-full z-10" @click.self="toggleModal">
-                <div class="bg-gray-500 text-white flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg shadow-xl">
+                <div class="bg-red-800 text-white flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg shadow-xl">
                     <div class="flex flex-row justify-between p-6 rounded-tl-lg rounded-tr-lg">
-                        <p class="font-semibold">Create Hunt</p>
-                        <p class="font-semibold cursor-pointer" @click="toggleModal">X</p>
+                        <p class="font-bold">Create Hunt</p>
+                        <p class="font-bold cursor-pointer" @click="toggleModal">X</p>
                     </div>
-                    <div class="flex flex-col px-6 py-5 bg-gray-500">
+                    <div class="flex flex-col px-6 py-5 bg-red-800">
                         <img class="w-1/4 mx-auto" :src="sprite">
                     <div class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5">
                         <div class="w-full sm:w-1/2">
                             <p class="mb-2 font-semibold">Pokémon</p>
-                            <select @change="getPokeInfo" class="text-black block w-full mt-1 rounded-md gray-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="pokemon" required>
+                            <select @change="getPokeInfo" class="text-black block w-full mt-1 rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="pokemon" required>
                                 <option v-for="(pokemon, id) of pokemons" :value="pokemon.url">{{ pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1).replace('-', ' ')  }}</option>
                             </select> 
                         </div>
                         <div class="w-full sm:w-1/2 mt-2 sm:mt-0">
                             <p class="mb-2 font-semibold">Game</p>
-                            <select @change="setGame" class="text-black block w-full mt-1 rounded-md gray-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="game" required>
+                            <select @change="setGame" class="text-black block w-full mt-1 rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="game" required>
                                 <option v-for="(game, id) in games" :value="game.url">{{ game.name.charAt(0).toUpperCase()+game.name.slice(1).replace('-', ' ') }}</option>
                                 <option value="sword">Sword</option>
                                 <option value="sword">Shield</option>
@@ -28,7 +30,7 @@
                     <hr />
                     <div class="flex items-center mt-5 mb-3 space-x-4">
                         <input v-model="chroma"
-                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0focus:ring-indigo-200 focus:ring-opacity-50 x"
+                        class="rounded border-red-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0focus:ring-indigo-200 focus:ring-opacity-50 x"
                         type="checkbox"
                         id="check2"
                         name="check2"
@@ -42,15 +44,14 @@
                 <div class="flex flex-row items-center justify-between p-5 rounded-bl-lg rounded-br-lg">
                     <!-- <input type="text" class="hidden" v-model="form.counter">
                     <input type="text" class="hidden" v-model="form.user"> -->
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit">Create</button>
+                    <button class="bg-white text-red-800 font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit">Create</button>
                 </div>
             </div>
         </div>
     </form>
 
-        <button v-if="isLoggedIn" class="bg-blue-500 hover:bg-blue-700 text-white fixed text-5xl h-20 w-20 rounded-full focus:outline-none focus:shadow-outline bottom-5 my-20 right-5" @click="toggleModal">+</button>
+        <button v-if="isLoggedIn" class="bg-red-800 hover:bg-red-500 text-white fixed text-5xl h-20 w-20 rounded-full focus:outline-none focus:shadow-outline bottom-5 my-20 right-5" @click="toggleModal">+</button>
     <div class="flex justify-center items-center py-10 flex-col z-0">
-        <h1 class="text-white text-4xl m-5">Global Hunts :</h1>
             <GlobalHuntList  />
     </div>
         <div class="fixed w-screen bottom-20 text-center py-4 lg:px-4" v-if="!isLoggedIn">
@@ -72,13 +73,14 @@ import { doc, setDoc, addDoc, updateDoc, getFirestore, collection } from 'fireba
 import { getAuth, onAuthStateChanged} from 'firebase/auth'
 import { useRoute } from 'vue-router'
 import router from "../router"
+import TopBar from "../components/TopBar.vue"
 
 
     export default {
 
         name: 'Home',
         components: {
- 
+            TopBar,
             GlobalHuntList
         },
         setup() {
