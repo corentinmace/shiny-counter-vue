@@ -2,7 +2,7 @@
     <div class="m-5 w-full">
         <div v-for="(hunt, id) in hunts" class=" m-3 z-0 flex justify-center">
           
-            <div class="bg-white my-2 text-black w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
+            <div class="bg-primary my-2 text-text_secondary w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
                 <div class="flex items-center justify-between">
                 <div class="flex items-center justify-between w-full space-x-4">
                     <div class="flex flex-row items-center">

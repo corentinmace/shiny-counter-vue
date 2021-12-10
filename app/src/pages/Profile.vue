@@ -2,7 +2,7 @@
 
 <TopBar>
   <div v-if="uid !== ''" class="flex items-center">
-    <h1 class="text-white font-bold mx-5">Profile</h1>
+    <h1 class="text-text_primary font-bold mx-5">Profile</h1>
       <router-link :to="{ name: 'Settings', params: { id: uid } }">
       <SettingsIcon class="w-6 h-6 m-1 filter invert" />
     </router-link>
@@ -22,9 +22,9 @@
         <img class="rounded-lg shadow-lg antialiased " src="https://source.unsplash.com/200x200">  
       </div>
       <div class="md:w-2/3 w-full px-3 flex flex-row flex-wrap">
-        <div class="w-full text-right text-gray-700 font-semibold relative pt-3 md:pt-0">
-          <div class="text-2xl text-white leading-tight">{{ displayName }}</div>
-          <div class="text-normal text-gray-300 hover:text-gray-400 cursor-pointer"><span class="border-b border-dashed border-gray-500 pb-1">Member</span></div>
+        <div class="w-full text-right text-text_primary font-semibold relative pt-3 md:pt-0">
+          <div class="text-2xl text-text_primary leading-tight">{{ displayName }}</div>
+          <div class="text-normal text-text_primary hover:text-gray-400 cursor-pointer"><span class="border-b border-dashed border-gray-500 pb-1">Member</span></div>
           <button class="text-s text-red-300 hover:text-red-500 cursor-pointer md:absolute pt-3 md:pt-0 bottom-0 right-0" @click="signOut">Logout</button>
           <!-- <div class="text-sm text-gray-300 hover:text-gray-400 cursor-pointer md:absolute pt-3 md:pt-0 bottom-0 right-0">Last Seen: <b>2 days ago</b></div> -->
         </div>
@@ -32,7 +32,7 @@
     </div>
     <!-- End Profile Card -->
 
-    <div class="my-5 text-black font-bold">
+    <div class="my-5 text-text_secondary font-bold">
       <p>Total Hunts : {{ totalHunts }}</p>
       <p>Hunts in progress : {{ runningHunts }}</p>
       <p>Hunts on hold : {{ holdHunts }}</p>

@@ -1,6 +1,6 @@
 <template>
     <TopBar>
-         <h1 class="text-white font-bold">Your Hunts</h1>
+         <h1 class="text-text_primary font-bold">Your Hunts</h1>
     </TopBar>
     <div class="flex justify-center items-center py-10 flex-col z-0">
         <UserHuntList  />   

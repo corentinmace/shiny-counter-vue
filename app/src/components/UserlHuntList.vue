@@ -1,13 +1,13 @@
 <template>
     <div class="m-5 w-full">
         <div v-for="(hunt, i) in hunts" class=" m-3 z-0 flex justify-center">
-            <div class="bg-white my-2 text-black w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
+            <div class="bg-primary my-2 text-text_secondary w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
                 <router-link :to="{ name: 'Hunt', params: { id: hunt.id } }">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center justify-between w-full space-x-4">
                             <div class="flex flex-row items-center">
                                 <div class="rounded-full w-4 h-4" :class="hunt.status"></div>
-                                <div class="text-lg text-black font-bold mx-5">{{hunt.pokemonName.charAt(0).toUpperCase()+hunt.pokemonName.slice(1).replace('-', ' ')}}</div>
+                                <div class="text-lg text-text_secondary font-bold mx-5">{{hunt.pokemonName.charAt(0).toUpperCase()+hunt.pokemonName.slice(1).replace('-', ' ')}}</div>
                             </div>
                             <div>
                                 <!-- <div>{{hunt.game.version.name.charAt(0).toUpperCase()+hunt.game.version.name.slice(1).replace('-', ' ')}}</div> -->
@@ -15,12 +15,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center mt-4 text-gray-500 font-bold h-24 justify-between mx-10">
+                    <div class="flex items-center mt-4 text-text_black font-bold h-24 justify-between mx-10">
                         <div>
                             <img class="w-20 h-20 rounded-full z-0" :src="hunt.sprite" alt="">
                         </div>
                         <div>
-                            <p class="text-black font-bold text-3xl">{{hunt.counter}}</p>
+                            <p class="text-text_secondary font-bold text-3xl">{{hunt.counter}}</p>
                         </div>
                     </div>
                 </router-link>

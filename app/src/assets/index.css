@@ -1,3 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.theme-pokeball {
+    --color-primary: 255 255 255;
+    --color-secondary: 153 27 27;
+    --color-tertiary: 220 38 38;
+    --text-color-primary: 255 255 255;
+    --text-black: 0 0 0;
+    --text-color-secondary: 0 0 0;
+    --text-color-tertiary: 153 27 27;
+    --text-color-light: 254 202 202;
+}
+
+
+.theme-superball {
+    --color-primary: 255 255 255;
+    --color-secondary: 59 130 246;
+    --color-tertiary: 3 105 161;
+    --text-color-primary: 255 255 255;
+    --text-black: 0 0 0;
+    --text-color-secondary: 0 0 0;
+    --text-color-tertiary: 2 132 199;
+    --text-color-light: 219 234 254;
+}
+
+.theme-hyperball {
+    --color-primary: 82 82 91;
+    --color-secondary: 234 179 8;
+    --color-tertiary: 252 211 77;
+    --text-black: 0 0 0;
+    --text-color-primary: 255 255 255;
+    --text-color-secondary: 255 255 255;
+    --text-color-tertiary: 252 211 77;
+    --text-color-light: 254 240 138;
+}
+
+.theme-rapideball {
+    --color-primary: 255 255 255;
+    --color-secondary: 59 130 246;
+    --color-tertiary: 220 38 38;
+    --text-color-primary: 255 255 255;
+    --text-color-secondary: 0 0 0;
+    --text-color-tertiary: 2 132 199;
+    --text-color-light: 219 234 254;
+}
+
+.theme-diveball {
+    --color-primary: 255 255 255;
+    --color-secondary: 59 130 246;
+    --color-tertiary: 220 38 38;
+    --text-color-primary: 255 255 255;
+    --text-color-secondary: 0 0 0;
+    --text-color-tertiary: 2 132 199;
+    --text-color-light: 219 234 254;
+}
+
+.theme-heavyball {
+    --color-primary: 255 255 255;
+    --color-secondary: 59 130 246;
+    --color-tertiary: 220 38 38;
+    --text-color-primary: 255 255 255;
+    --text-color-secondary: 0 0 0;
+    --text-color-tertiary: 2 132 199;
+    --text-color-light: 219 234 254;
+}
+
+.theme-dreamball {
+    --color-primary: 255 255 255;
+    --color-secondary: 59 130 246;
+    --color-tertiary: 220 38 38;
+    --text-color-primary: 255 255 255;
+    --text-color-secondary: 0 0 0;
+    --text-color-tertiary: 2 132 199;
+    --text-color-light: 219 234 254;
+}
+
+.theme-masterball {
+    --color-primary: 255 255 255;
+    --color-secondary: 59 130 246;
+    --color-tertiary: 220 38 38;
+    --text-color-primary: 255 255 255;
+    --text-color-secondary: 0 0 0;
+    --text-color-tertiary: 2 132 199;
+    --text-color-light: 219 234 254;
+}

@@ -1,6 +1,6 @@
-<template>
+<template class="bg-secondary h-full">
     <TopBar>
-         <h1 class="text-white font-bold">Settings</h1>
+         <h1 class="text-text_primary font-bold">Settings</h1>
     </TopBar>
     <ThemeSelect />
 </template>

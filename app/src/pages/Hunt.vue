@@ -1,50 +1,50 @@
 <template>
         <TopBar>
-            <h1 class="text-white font-bold">Hunt : <span class="font-light">{{pokemonName.charAt(0).toUpperCase()+pokemonName.slice(1).replace('-', ' ')}}</span></h1>
+            <h1 class="text-text_primary font-bold">Hunt : <span class="font-light">{{pokemonName.charAt(0).toUpperCase()+pokemonName.slice(1).replace('-', ' ')}}</span></h1>
         </TopBar>
         <div v-if="showModal">
             <div class="flex justify-center items-center antialiased fixed backdrop-filter backdrop-blur-sm w-full h-full z-10" @click.self="toggleModal">
-                <div class=" bg-red-800 text-white flex flex-col w-1/2 mx-auto rounded-lg shadow-xl">
+                <div class="bg-secondary text-text_primary flex flex-col w-1/2 mx-auto rounded-lg shadow-xl">
                     <div class="flex flex-col justify-between p-6 rounded-tl-lg rounded-tr-lg">
                         <div class="flex flex-row justify-between rounded-tl-lg rounded-tr-lg">
                             <p class="text-sm font-bold mb-5">Enter your new number</p>
                             <p class="font-semibold cursor-pointer" @click="toggleModal">X</p>
                         </div>
-                        <input type="text" class="text-black block w-full mt-1 rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" v-model="counter">
-                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold my-2 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="updateCounter">Update</button>
+                        <input type="text" class="text-text_secondary block w-full mt-1 rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" v-model="counter">
+                        <button class="bg-primary hover:bg-red-700 text-text_tertiary font-bold my-2 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="updateCounter">Update</button>
                     </div>
                 </div>
             </div>
         </div>
-    <div class="flex justify-center items-center py-10 flex-col z-0">
+    <div class="h-screen bg-primary flex justify-center items-center py-10 flex-col z-0">
         <div class="m-5 w-full">
             <div class="m-3 z-0 flex justify-center">
-                <div class="bg-red-800 my-2 text-black w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
+                <div class="bg-secondary my-2 text-text_primary w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center justify-between w-full space-x-4">
                             <div class="flex flex-row items-center">
                                 <div class="rounded-full w-4 h-4" :class="status"></div>
-                                <div class="text-lg text-white font-bold mx-5">{{pokemonName.charAt(0).toUpperCase()+pokemonName.slice(1).replace('-', ' ')}}</div>
+                                <div class="text-lg text-text_primary font-bold mx-5">{{pokemonName.charAt(0).toUpperCase()+pokemonName.slice(1).replace('-', ' ')}}</div>
                                 <div>
                                     <img v-if="chroma" class=" h-8 w-8 z-0" src="https://www.pokepedia.fr/images/6/65/Sprite_Charme_Chroma_NB2.png" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center mt-4 text-red-500 font-bold h-24 justify-between mx-10">
+                    <div class="flex items-center mt-4 font-bold h-24 justify-between mx-10">
                         <div>
                             <img class="w-20 h-20 rounded-full z-0" :src="sprite" alt="">
                         </div>
                         <div>
-                            <p @dblclick="toggleModal" class="text-white font-bold text-3xl">{{counter}}</p>
+                            <p @dblclick="toggleModal" class="font-bold text-3xl">{{counter}}</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-evenly my-10">
                         <div>
-                            <button class="bg-white text-red-800 font-bold h-10 w-10 rounded-full" @click="increaseCounter">+</button>                       
+                            <button class="bg-primary text-text_tertiary font-bold h-10 w-10 rounded-full" @click="increaseCounter">+</button>                       
                          </div>
                         <div>
-                            <button class="bg-white text-red-800 font-bold h-10 w-10 rounded-full" @click="decreaseCounter">-</button>           
+                            <button class="bg-primary text-text_tertiary font-bold h-10 w-10 rounded-full" @click="decreaseCounter">-</button>           
                         </div>
                     </div>
                         
@@ -65,11 +65,11 @@
                                 Finished
                                 </label>
                         </form>
-                        <h1 class="text-lg text-white font-bold my-5">Delete Hunt</h1>
-                         <button class="bg-white text-red-800 font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="deleteHunt">Delete</button>
+                        <h1 class="text-lg text-text_primary font-bold my-5">Delete Hunt</h1>
+                         <button class="bg-primary text-text_tertiary font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="deleteHunt">Delete</button>
 
                     </div>
-                <p class="text-center text-xs font-bold text-white my-3">Double tap on the counter to update the number</p>
+                <p class="text-center text-xs font-bold text-text_primary my-3">Double tap on the counter to update the number</p>
                 </div>
             </div>
         </div>

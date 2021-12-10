@@ -1,26 +1,26 @@
 <template>
     <TopBar>
-         <h1 class="text-white font-bold">Log-in</h1>
+         <h1 class="text-text_primary font-bold">Log-in</h1>
     </TopBar>
         <div class="w-screen h-screen flex justify-center p-10 flex-col">
             <div class="mb-6">
-                <label class="block text-black text-sm font-bold mb-2" for="username">
+                <label class="block text-text_secondary text-sm font-bold mb-2" for="username">
                     Email
                 </label>
-                <input v-model="email" class="mt-1 block text-black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="username" type="email">
+                <input v-model="email" class="mt-1 block text-text_black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="username" type="email">
             </div>
             <div class="mb-6">
-                <label class="block text-black text-sm font-bold mb-2" for="password">
+                <label class="block text-text_secondary text-sm font-bold mb-2" for="password">
                     Password
                 </label>
-                <input v-model="password" class="mt-1 block text-black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="password" type="password">
+                <input v-model="password" class="mt-1 block text-text_black w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required id="password" type="password">
                 <!-- <p class="text-red-500 text-xs italic">Please choose a password.</p> -->
             </div>
             <div  v-if="errMsg"  class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
                 <p class="font-bold">{{ errMsg }}</p>
             </div>
                 <div class="flex items-center justify-center">
-                <button @click="signIn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="">
+                <button @click="signIn" class="bg-tertiary hover:bg-secondary text-text_primary font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="">
                     Login
                 </button>
                 <!-- <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">

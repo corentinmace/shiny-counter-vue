@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-between p-5 py-6 items-center bg-red-800 fixed top-0 w-screen text-white h-10 py-3">
+    <div class="flex justify-between p-5 py-6 items-center bg-secondary text-text_primary fixed top-0 w-screen text-white h-10 py-3">
             <BackArrow @click="back" class=" w-6 h-6 m-1 filter invert" />
         <slot></slot>
     </div>

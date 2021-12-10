@@ -1,16 +1,16 @@
 <template>
-    <div class="flex justify-center items-center py-20 flex-col z-0">
-        <h1 class="text-black font-bold text-l p-10">Theme Select <span class="text-xs">(WIP)</span></h1>
+    <div class="h-screen flex items-center py-20 flex-col z-0">
+        <h1 class="text-text_secondary font-bold text-l p-10">Theme Select <span class="text-xs">(WIP)</span></h1>
         <div class="flex flex-wrap justify-between w-2/3">
-            <img @click="selectTheme('pokeball')" class="p-3" src="../assets/themeIcons/pokeball.png" alt="">
-            <img @click="selectTheme('superball')" class="p-3" src="../assets/themeIcons/superball.png" alt="">
-            <img @click="selectTheme('hyperball')" class="p-3" src="../assets/themeIcons/hyperball.png" alt="">
-            <img @click="selectTheme('rapideball')" class="p-3" src="../assets/themeIcons/rapideball.png" alt="">
-            <img @click="selectTheme('diveball')" class="p-3" src="../assets/themeIcons/diveball.png" alt="">
-            <img @click="selectTheme('luxeball')" class="p-3" src="../assets/themeIcons/luxeball.png" alt="">
-            <img @click="selectTheme('heavyball')" class="p-3" src="../assets/themeIcons/heavyball.png" alt="">
-            <img @click="selectTheme('dreamball')" class="p-3" src="../assets/themeIcons/dreamball.png" alt="">
-            <img @click="selectTheme('masterball')" class="p-3" src="../assets/themeIcons/masterball.png" alt="">
+            <img @click="selectTheme('theme-pokeball')" class="p-3" src="../assets/themeIcons/pokeball.png" alt="">
+            <img @click="selectTheme('theme-superball')" class="p-3" src="../assets/themeIcons/superball.png" alt="">
+            <img @click="selectTheme('theme-hyperball')" class="p-3" src="../assets/themeIcons/hyperball.png" alt="">
+            <!-- <img @click="selectTheme('theme-rapideball')" class="p-3" src="../assets/themeIcons/rapideball.png" alt="">
+            <img @click="selectTheme('theme-diveball')" class="p-3" src="../assets/themeIcons/diveball.png" alt="">
+            <img @click="selectTheme('theme-luxeball')" class="p-3" src="../assets/themeIcons/luxeball.png" alt="">
+            <img @click="selectTheme('theme-heavyball')" class="p-3" src="../assets/themeIcons/heavyball.png" alt="">
+            <img @click="selectTheme('theme-dreamball')" class="p-3" src="../assets/themeIcons/dreamball.png" alt="">
+            <img @click="selectTheme('theme-masterball')" class="p-3" src="../assets/themeIcons/masterball.png" alt=""> -->
         </div>
     </div>
 </template>
@@ -40,6 +40,9 @@ import { getFirestore, updateDoc, setDoc, doc, getDocs, collection, query, where
                 updateDoc(doc(db, "users", uid.value), {
                     themePreferencies: theme
                 })
+                let themes = ['theme-pokeball', 'theme-superball', 'theme-hyperball',]
+                document.getElementById('app').classList.remove(...themes)
+                document.getElementById('app').classList.add(theme)
             }
 
             return { selectTheme }
