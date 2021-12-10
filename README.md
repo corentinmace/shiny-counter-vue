@@ -8,7 +8,7 @@ Application de Shiny Hunting pour Pokémon
 
 **Client:** VueJS, TailwindCSS, Axios
 
-**Server** : [PokéApi](https://pokeapi.co/)
+**Server** : [PokéApi](https://pokeapi.co/), Firebase
 
 
 
