@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .theme-pokeball {
     --color-primary: 255 255 255;
     --color-secondary: 153 27 27;
@@ -12,6 +11,8 @@
     --text-color-secondary: 0 0 0;
     --text-color-tertiary: 153 27 27;
     --text-color-light: 254 202 202;
+    --slate: 100 116 139;
+    --red: 239 68 68;
 }
 
 
@@ -24,6 +25,8 @@
     --text-color-secondary: 0 0 0;
     --text-color-tertiary: 2 132 199;
     --text-color-light: 219 234 254;
+    --slate: 100 116 139;
+    --red: 239 68 68;
 }
 
 .theme-hyperball {
@@ -35,6 +38,8 @@
     --text-color-secondary: 255 255 255;
     --text-color-tertiary: 252 211 77;
     --text-color-light: 254 240 138;
+    --slate: 100 116 139;
+    --red: 239 68 68;
 }
 
 .theme-rapideball {
@@ -45,6 +50,8 @@
     --text-color-secondary: 0 0 0;
     --text-color-tertiary: 2 132 199;
     --text-color-light: 219 234 254;
+    --slate: 100 116 139;
+    --red: 239 68 68;
 }
 
 .theme-diveball {
@@ -55,6 +62,8 @@
     --text-color-secondary: 0 0 0;
     --text-color-tertiary: 2 132 199;
     --text-color-light: 219 234 254;
+    --slate: 100 116 139;
+    --red: 239 68 68;
 }
 
 .theme-heavyball {
@@ -65,6 +74,8 @@
     --text-color-secondary: 0 0 0;
     --text-color-tertiary: 2 132 199;
     --text-color-light: 219 234 254;
+    --slate: 100 116 139;
+    --red: 239 68 68;
 }
 
 .theme-dreamball {
@@ -75,6 +86,8 @@
     --text-color-secondary: 0 0 0;
     --text-color-tertiary: 2 132 199;
     --text-color-light: 219 234 254;
+    --slate: 100 116 139;
+    --red: 239 68 68;
 }
 
 .theme-masterball {
@@ -85,4 +98,6 @@
     --text-color-secondary: 0 0 0;
     --text-color-tertiary: 2 132 199;
     --text-color-light: 219 234 254;
+    --slate: 100 116 139;
+    --red: 239 68 68;
 }

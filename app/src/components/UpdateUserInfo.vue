@@ -5,6 +5,20 @@
             Username
         </label>
         <input id="username" type="text" class="px-2 w-2/3 text-text_black block mt-1 rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" v-model="username">
+        <label class="block text-text_secondary text-sm font-bold my-5" for="username">
+            Profile Picture
+        </label>
+        <div class="w-2/3 flex items-center">
+            <input type="text" class="px-2 w-full text-text_black block rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="profileImage">
+            <img class="w-10 h-10 rounded-full mx-2" v-if="profileImage" :src="profileImage" alt="">
+        </div>
+        <label class="block text-text_secondary text-sm font-bold my-5" for="username">
+            Profile Banner
+        </label>
+        <div class="w-2/3 flex items-center">
+            <input type="text" class="px-2 w-full text-text_black block rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="profileBanner">
+            <img class="h-10 rounded-lg mx-2" v-if="profileBanner" :src="profileBanner" alt="">
+        </div>
         <button class="bg-secondary text-text_primary font-bold my-5 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="updateUserInfos">Update</button>
     </div>
     <transition name="fade">
@@ -20,22 +34,35 @@
 <script>
 import { ref, onMounted } from 'vue'
 import { getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth'
-import { getFirestore, updateDoc, doc, writeBatch, where, collection} from 'firebase/firestore'
+import { getFirestore, updateDoc, doc, where, collection, query, getDocs} from 'firebase/firestore'
 
     export default {
         setup() {
-            const auth = getAuth()
-            const uid = ref()
-            const db = getFirestore()
-            const batch = writeBatch(db);
             const username = ref()
             const updateOk = ref(false)
+            const profileImage = ref()
+            const profileBanner = ref()
+            const auth = getAuth()
+            const db = getFirestore()
+            const uid = ref()
 
             onMounted(() => {
+                const userInfos = ref()
+                const UserRef = collection(db, "users")
                 auth.onAuthStateChanged(function(user) {
                     if(user) {
                         uid.value = user.uid
+                        const userQuery = query(UserRef, where('uid', '==', uid.value))
                         username.value = user.displayName
+                        profileImage.value = user.photoURL
+                        getDocs(userQuery)
+                        .then((response) => {
+                            userInfos.value = response.docs.map((doc, id) => {
+                                return doc.data();
+                            })
+                            profileBanner.value = userInfos.value[0].profileBanner
+                        })
+
                     }
                 })
             })
@@ -44,10 +71,14 @@ import { getFirestore, updateDoc, doc, writeBatch, where, collection} from 'fire
                 auth.onAuthStateChanged(function(user) {
                     if (user) {
                         updateProfile(user, {
-                            displayName: username.value
+                            displayName: username.value, 
+                            photoURL: profileImage.value
                         })
                         updateDoc(doc(db, "users", uid.value), {
-                            displayName: username.value
+                            displayName: username.value,
+                            photoURL: profileImage.value,
+                            profileBanner: profileBanner.value
+
                         })
                     }
                  })
@@ -57,7 +88,7 @@ import { getFirestore, updateDoc, doc, writeBatch, where, collection} from 'fire
                 }, 1000);
             }
 
-            return { username, updateUserInfos, updateOk }
+            return { username, profileImage, profileBanner, updateUserInfos, updateOk }
 
         }
     }

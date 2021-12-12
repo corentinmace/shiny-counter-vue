@@ -12,27 +12,33 @@
 
   <div class="mx-auto w-2/3">
     <!-- Profile Card -->
-    <div class="rounded-lg shadow-lg bg-gray-600 w-full flex flex-row flex-wrap p-3 antialiased" style="
-      background-image: url('https://source.unsplash.com/1600x900');
-      background-repeat: no-repat;
-      background-size: cover;
-      background-blend-mode: multiply;
-    ">
-      <div class="md:w-1/3 w-full">
-        <img class="rounded-lg shadow-lg antialiased " src="https://source.unsplash.com/200x200">  
+    <div class="rounded-lg justify-between shadow-lg bg-gray-600 w-full flex flex-row flex-wrap antialiased h-80" :style="{
+      backgroundImage: 'url(' + profileBanner +')',
+      backgroundRepeat: 'no-repat',
+      backgroundSize: 'cover',
+      backgroundBlendMode: 'multiply',
+      backgroundPosition: 'center'
+    }">
+      <div class="w-2/3 p-3">
+        <img class="rounded-full shadow-lg antialiased h-32 w-32" v-if="profileImage" :src="profileImage">
+        <img class="rounded-full shadow-lg antialiased h-32 w-32" v-if="!profileImage" src="../assets/logo.png">
+
+          
       </div>
-      <div class="md:w-2/3 w-full px-3 flex flex-row flex-wrap">
-        <div class="w-full text-right text-text_primary font-semibold relative pt-3 md:pt-0">
-          <div class="text-2xl text-text_primary leading-tight">{{ displayName }}</div>
-          <div class="text-normal text-text_primary hover:text-gray-400 cursor-pointer"><span class="border-b border-dashed border-gray-500 pb-1">Member</span></div>
-          <button class="text-s text-red-300 hover:text-red-500 cursor-pointer md:absolute pt-3 md:pt-0 bottom-0 right-0" @click="signOut">Logout</button>
+      <div class="w-full mt-20 h-auto rounded-b-lg flex flex-row flex-wrap bg-secondary p-5">
+        <div class="w-full flex justify-between text-slate font-semibold relative pt-3 md:pt-0">
+          <div>
+            <div class="text-2xl text-text_primary leading-tight">{{ displayName }}</div>
+            <div class="text-normal cursor-pointer"><span class="border-b border-dashed text-text_primary pb-1">Member</span></div>
+          </div>
+          <button class="text-s text-red cursor-pointer md:absolute pt-3 md:pt-0 bottom-0 font-bold right-0" @click="signOut">Logout</button>
           <!-- <div class="text-sm text-gray-300 hover:text-gray-400 cursor-pointer md:absolute pt-3 md:pt-0 bottom-0 right-0">Last Seen: <b>2 days ago</b></div> -->
         </div>
       </div>
     </div>
     <!-- End Profile Card -->
 
-    <div class="my-5 text-text_secondary font-bold">
+    <div class="my-10 text-text_secondary font-bold">
       <p>Total Hunts : {{ totalHunts }}</p>
       <p>Hunts in progress : {{ runningHunts }}</p>
       <p>Hunts on hold : {{ holdHunts }}</p>
@@ -74,6 +80,8 @@ export default {
       const holdHunts = ref(0)
       const finishedHunts = ref(0)
       const updatedProfile = ref(false)
+      const profileImage = ref()
+      const profileBanner = ref()
 
       // runs after firebase is initialized
       auth.onAuthStateChanged(function(user) {
@@ -86,6 +94,7 @@ export default {
                })
             }
             displayName.value = user.displayName
+            profileImage.value = user.photoURL
             isLoggedIn.value = true // if we have a user
           
             const db = getFirestore();
@@ -98,6 +107,7 @@ export default {
                     userInfos.value = response.docs.map((doc, id) => {
                         return doc.data();
                     })
+                    profileBanner.value = userInfos.value[0].profileBanner
                     if (userInfos.value.length == 0) {
                       updatedProfile.value = false
                       setDoc(doc(db, "users", user.uid), {
@@ -145,7 +155,7 @@ export default {
         router.push('/')
       }
 
-      return { totalHunts, runningHunts, holdHunts, finishedHunts, signOut, isLoggedIn, displayName, uid }
+      return { totalHunts, profileBanner, profileImage, runningHunts, holdHunts, finishedHunts, signOut, isLoggedIn, displayName, uid }
   }
 }
 
