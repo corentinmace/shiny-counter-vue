@@ -1,6 +1,6 @@
 <template>
-    <div class="m-5 w-full">
-        <div v-for="(hunt, i) in hunts" class=" m-3 z-0 flex justify-center">
+    <div class="p-5 w-full bg-primary">
+        <div v-for="(hunt, i) in hunts" class=" p-3 z-0 flex justify-center">
             <div class="bg-primary my-2 text-text_secondary w-full max-w-md flex flex-col rounded-xl shadow-lg p-4">
                 <router-link :to="{ name: 'Hunt', params: { id: hunt.id } }">
                     <div class="flex items-center justify-between">

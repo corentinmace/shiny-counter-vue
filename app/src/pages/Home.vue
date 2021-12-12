@@ -51,7 +51,7 @@
     </form>
 
         <button v-if="isLoggedIn" class="bg-secondary hover:bg-red-500 text-text_primary fixed text-5xl h-20 w-20 rounded-full focus:outline-none focus:shadow-outline bottom-5 my-20 right-5" @click="toggleModal">+</button>
-    <div class="flex justify-center items-center py-10 flex-col z-0">
+    <div class="flex bg-primary h-full justify-center items-center py-10 flex-col z-0">
             <GlobalHuntList  />
     </div>
         <div class="fixed w-screen bottom-20 text-center py-4 lg:px-4" v-if="!isLoggedIn">
@@ -161,6 +161,8 @@ import TopBar from "../components/TopBar.vue"
                         }
                         //console.log(pokemons.value[0])
                     })   
+                        pokemons.value = pokemons.value.sort()
+                        console.log(pokemons.value)
                 })
 
 

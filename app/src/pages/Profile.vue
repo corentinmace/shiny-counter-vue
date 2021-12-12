@@ -41,7 +41,8 @@
  
   </div>
 </div>
-<p class="text-xs bottom-20 right-2 fixed">v.Beta-0.5.2</p>
+
+<p class="text-xs bottom-20 right-2 fixed">v.Beta-0.5.5</p>
 </template>
 
 <script>
@@ -77,7 +78,6 @@ export default {
       // runs after firebase is initialized
       auth.onAuthStateChanged(function(user) {
           if (user) {
-
             uid.value = user.uid
             if (user.displayName == null) {
               let username = prompt("Please enter a nickname to continue :")

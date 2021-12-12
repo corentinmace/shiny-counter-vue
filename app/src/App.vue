@@ -1,7 +1,7 @@
 <script>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-  import { ref, watchEffect } from 'vue' // used for conditional rendering
+  import { ref, watchEffect, onMounted } from 'vue' // used for conditional rendering
   import { useRouter } from 'vue-router'
   import { getAuth, onAuthStateChanged } from 'firebase/auth'
   import { getFirestore , doc, getDocs, updateDoc, collection, query, where, orderBy, deleteDoc } from 'firebase/firestore'
@@ -22,14 +22,15 @@
     }, 
     setup() {
 
-      const router = useRouter()
+      const isMounted = ref(false)
       const isLoggedIn = ref(false)
-      const auth = getAuth()
-      const db = getFirestore()
-      const UserRef = collection(db, "users")
-      let thisUser = []
-      let userTheme = ref()
-
+      onMounted(() => {
+        const router = useRouter()
+        const auth = getAuth()
+        const db = getFirestore()
+        const UserRef = collection(db, "users")
+        let thisUser = []
+        let userTheme = ref()
 
       // runs after firebase is initialized
       auth.onAuthStateChanged(function(user) {
@@ -47,18 +48,22 @@
             console.log(userTheme.value)
 
             document.getElementById("app").classList.add(userTheme.value)
+            isMounted.value = true
             })
 
         } else {
           isLoggedIn.value = false // if we do not
+            isMounted.value = true
         }
         })
         const signOut = () => {
           auth.signOut()
           router.push('/')
         }
+      })
 
-        return { isLoggedIn }
+
+        return { isLoggedIn, isMounted }
     }
   }
 
@@ -67,6 +72,10 @@
 
 
 <template>
+<div v-if="!isMounted" class="w-screen h-screen bg-text_black absolute z-10 flex justify-center items-center flex-col">
+  <img class="w-10 h-10" src="https://media3.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif" alt="">
+  <p class="text-text_primary font-bold p-5">Now Loading..</p>
+</div>
 <div class="bg-secondary fixed bottom-0 w-screen text-text_primary flex justify-evenly h-15 py-3">
       <router-link to="/" active-class="opacity-100" class="lg:mt-0 text-xs flex flex-col justify-center items-center opacity-30">
         <HomeIcon class="w-6 h-6 m-1 filter invert" />

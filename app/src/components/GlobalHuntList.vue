@@ -38,20 +38,20 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 export default {
     setup() {
-
         const hunts = ref([])
-            const db = getFirestore();
-            const HuntRef = collection(db, 'hunts')
-            const q = query(HuntRef, where('status','==', 'running'))
-    
-            getDocs(q)
-                .then((response) => {
-                    hunts.value = []
-                    hunts.value = response.docs.map((doc, i) => {
-                        return doc.data();
-                    })
-             })
-           return { hunts }
+        const db = getFirestore();
+        const HuntRef = collection(db, 'hunts')
+        const q = query(HuntRef, where('status','==', 'running'))
+
+        getDocs(q)
+            .then((response) => {
+                hunts.value = []
+                hunts.value = response.docs.map((doc, i) => {
+                    return doc.data();
+                })
+
+            })
+        return { hunts }
     }
 }
 </script>

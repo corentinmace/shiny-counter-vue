@@ -10,7 +10,7 @@
                             <p class="text-sm font-bold mb-5">Enter your new number</p>
                             <p class="font-semibold cursor-pointer" @click="toggleModal">X</p>
                         </div>
-                        <input type="text" class="text-text_secondary block w-full mt-1 rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" v-model="counter">
+                        <input type="text" class="text-text_black block w-full mt-1 rounded-md red-300 shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" v-model="counter">
                         <button class="bg-primary hover:bg-red-700 text-text_tertiary font-bold my-2 px-6 rounded-full focus:outline-none focus:shadow-outline" type="submit" @click="updateCounter">Update</button>
                     </div>
                 </div>
