@@ -14,7 +14,8 @@
                     <div class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5">
                         <div class="w-full sm:w-1/2">
                             <p class="mb-2 font-semibold">Pokémon</p>
-                            <select @change="getPokeInfo" class="text-text_black block w-full mt-1 rounded-md shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="pokemon" required>
+                            <input type="text" list="pokemon" v-model="pokemon">
+                            <select id="pokemon" @change="getPokeInfo" class="text-text_black block w-full mt-1 rounded-md shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
                                 <option v-for="(pokemon, id) of pokemons" :value="pokemon.url">{{ pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1).replace('-', ' ')  }}</option>
                             </select> 
                         </div>
@@ -71,7 +72,6 @@ import axios from 'axios'
 import { ref, onMounted } from 'vue'
 import { doc, setDoc, addDoc, updateDoc, getFirestore, collection } from 'firebase/firestore'
 import { getAuth, onAuthStateChanged} from 'firebase/auth'
-import { useRoute } from 'vue-router'
 import router from "../router"
 import TopBar from "../components/TopBar.vue"
 
@@ -84,7 +84,6 @@ import TopBar from "../components/TopBar.vue"
             GlobalHuntList
         },
         setup() {
-
             const uid = ref('')
             const username = ref('')
             const isLoggedIn = ref(false)
@@ -106,6 +105,7 @@ import TopBar from "../components/TopBar.vue"
             const toggleModal = () => {
                 showModal.value = !showModal.value
             }
+
             const games = ref([])
             const pokemon = ref('')
             const pokemonApiLink = ref ('')
@@ -115,7 +115,6 @@ import TopBar from "../components/TopBar.vue"
             const pokemons = ref([])
             const game = ref('')
             
-
             const getPokeInfo = (e) => {
                 games.value = []
                 pokemonApiLink.value = e.target.value

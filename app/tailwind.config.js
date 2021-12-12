@@ -21,6 +21,8 @@ module.exports = {
       text_tertiary: withOpacityValue('--text-color-tertiary'),
       text_light: withOpacityValue('--text-color-light'),
       text_black: withOpacityValue('--text-black'),
+      slate: withOpacityValue('--slate'),
+      red: withOpacityValue('--red')
     }
   },
   variants: {
