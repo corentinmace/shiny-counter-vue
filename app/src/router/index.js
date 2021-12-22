@@ -39,7 +39,7 @@ const routes = [
      component: Hunt
    },
    {
-     path: "/settings/:id",
+     path: "/settings",
      name: "Settings", 
      "component" : Settings
    }

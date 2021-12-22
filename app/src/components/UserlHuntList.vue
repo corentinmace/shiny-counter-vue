@@ -7,7 +7,7 @@
                         <div class="flex items-center justify-between w-full space-x-4">
                             <div class="flex flex-row items-center">
                                 <div class="rounded-full w-4 h-4" :class="hunt.status"></div>
-                                <div class="text-lg text-text_secondary font-bold mx-5">{{hunt.pokemonName.charAt(0).toUpperCase()+hunt.pokemonName.slice(1).replace('-', ' ')}}</div>
+                                <div class="text-lg font-bold mx-5">{{hunt.pokemonName.charAt(0).toUpperCase()+hunt.pokemonName.slice(1).replace('-', ' ')}} <span class="italic font-light"> - {{hunt.game.charAt(0).toUpperCase()+hunt.game.slice(1).replace('-', ' ')}}</span></div>
                             </div>
                             <div>
                                 <!-- <div>{{hunt.game.version.name.charAt(0).toUpperCase()+hunt.game.version.name.slice(1).replace('-', ' ')}}</div> -->

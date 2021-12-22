@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import '/src/assets/select.css'
 import '/src/assets/index.css'
 import router from './router'
 import { initializeApp } from "firebase/app";

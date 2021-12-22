@@ -24,7 +24,7 @@
                         <div class="flex items-center justify-between w-full space-x-4">
                             <div class="flex flex-row items-center">
                                 <div class="rounded-full w-4 h-4" :class="status"></div>
-                                <div class="text-lg text-text_primary font-bold mx-5">{{pokemonName.charAt(0).toUpperCase()+pokemonName.slice(1).replace('-', ' ')}}</div>
+                                <div class="text-lg text-text_primary font-bold mx-5">{{pokemonName.charAt(0).toUpperCase()+pokemonName.slice(1).replace('-', ' ')}}<span class="font-normal italic"> - {{game.charAt(0).toUpperCase()+game.slice(1).replace('-', ' ')}}</span></div>
                                 <div>
                                     <img v-if="chroma" class=" h-8 w-8 z-0" src="https://www.pokepedia.fr/images/6/65/Sprite_Charme_Chroma_NB2.png" alt="">
                                 </div>
@@ -181,7 +181,8 @@ export default {
         const increaseCounter = async () => {
             counter.value++
             await updateDoc(actualHuntRef, {
-                counter: counter.value
+                counter: counter.value,
+                latestUpdate: Date.now()
             })
         }
 
@@ -191,7 +192,8 @@ export default {
                 counter.value = 0;
             }
             await updateDoc(actualHuntRef, {
-                counter: counter.value
+                counter: counter.value,
+                latestUpdate: Date.now()
             })
         }
 
@@ -222,6 +224,7 @@ export default {
                     pokemonName.value = hunts[0].pokemonName
                     status.value = hunts[0].status
                     counter.value = hunts[0].counter
+                    game.value = hunts[0].game
                         })
                 } else {
                     isLoggedIn.value = false // if we do not

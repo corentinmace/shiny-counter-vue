@@ -7,7 +7,7 @@
                 <div class="flex items-center justify-between w-full space-x-4">
                     <div class="flex flex-row items-center">
                         <div class="rounded-full w-4 h-4" :class="hunt.status"></div>
-                        <div class="text-lg font-bold mx-5">{{hunt.pokemonName.charAt(0).toUpperCase()+hunt.pokemonName.slice(1).replace('-', ' ')}}</div>
+                        <div class="text-lg font-bold mx-5">{{hunt.pokemonName.charAt(0).toUpperCase()+hunt.pokemonName.slice(1).replace('-', ' ')}} <span class="italic font-light"> - {{hunt.game.charAt(0).toUpperCase()+hunt.game.slice(1).replace('-', ' ')}}</span></div>
                     </div>
                     <div>
                         <!-- <div>{{hunt.game.version.name.charAt(0).toUpperCase()+hunt.game.version.name.slice(1).replace('-', ' ')}}</div> -->
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { getFirestore , doc, getDocs, collection, query, where} from 'firebase/firestore'
+import { getFirestore , doc, getDocs, collection, orderBy, query, where} from 'firebase/firestore'
 import { onMounted, ref, reactive } from 'vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
@@ -41,7 +41,7 @@ export default {
         const hunts = ref([])
         const db = getFirestore();
         const HuntRef = collection(db, 'hunts')
-        const q = query(HuntRef, where('status','==', 'running'))
+        const q = query(HuntRef, where('status','==', 'running'), orderBy("latestUpdate", "desc"))
 
         getDocs(q)
             .then((response) => {

@@ -1,6 +1,6 @@
 <template>
        <TopBar>
-             <h1 class="text-text_primary font-bold">Global Hunts</h1>
+             <h1 class="text-text_primary font-bold">Home <span class="font-normal">- Latest Hunts</span></h1>
         </TopBar>
        <form @submit.prevent="createHunt" v-if="showModal">
             <div class="flex justify-center items-center antialiased fixed backdrop-filter backdrop-blur-sm w-full h-full z-10" @click.self="toggleModal">
@@ -14,17 +14,20 @@
                     <div class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5">
                         <div class="w-full sm:w-1/2">
                             <p class="mb-2 font-semibold">Pokémon</p>
-                            <input type="text" list="pokemon" v-model="pokemon">
-                            <select id="pokemon" @change="getPokeInfo" class="text-text_black block w-full mt-1 rounded-md shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                            <!-- <input type="text" list="pokemon" v-model="pokemon"> -->
+                            <!-- <select id="pokemon" @change="getPokeInfo" class="text-text_black block w-full mt-1 rounded-md shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="pokemon" required>
                                 <option v-for="(pokemon, id) of pokemons" :value="pokemon.url">{{ pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1).replace('-', ' ')  }}</option>
-                            </select> 
+                            </select>  -->
+                            <vue-select @toggle="getPokeInfo" searchPlaceholder="Searh your Pokémon" searchable :options="pokemons" class="text-text_black w-full"  label-by="name" v-model="pokemon" closeOnSelect></vue-select>
                         </div>
                         <div class="w-full sm:w-1/2 mt-2 sm:mt-0">
                             <p class="mb-2 font-semibold">Game</p>
-                            <select @change="setGame" class="text-text_black block w-full mt-1 rounded-md shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="game" required>
-                                <option v-for="(game, id) in games" :value="game.url">{{ game.name.charAt(0).toUpperCase()+game.name.slice(1).replace('-', ' ') }}</option>
+                            <select @change="setGame" class="p-1 text-text_black block w-full mt-1 rounded-md shadow-sm focus:indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="game" required>
+                                <option v-for="(game, id) in games" :value="game.name">{{ game.name.charAt(0).toUpperCase()+game.name.slice(1).replace('-', ' ') }}</option>
                                 <option value="sword">Sword</option>
-                                <option value="sword">Shield</option>
+                                <option value="shield">Shield</option>
+                                <option value="brilliant-diamond">Brilliant Diamond</option>
+                                <option value="shining-pearl">Shinning Pearl</option>
                             </select>
                         </div>
                     </div>
@@ -65,8 +68,22 @@
     
 </template>
 
+<style>
+.vue-select {
+    border: unset;
+    background: white;
+}
+
+.vue-dropdown-item.highlighted, .vue-dropdown-item.selected.highlighted {
+    background-color: black;
+    color: white;
+}
+
+
+</style>
+
 <script>
-import GlobalHuntList from '../components/GlobalHuntList.vue'
+import GlobalHuntList from "../components/GlobalHuntList.vue"
 
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
@@ -74,20 +91,24 @@ import { doc, setDoc, addDoc, updateDoc, getFirestore, collection } from 'fireba
 import { getAuth, onAuthStateChanged} from 'firebase/auth'
 import router from "../router"
 import TopBar from "../components/TopBar.vue"
-
+import VueNextSelect from 'vue-next-select'
 
     export default {
 
         name: 'Home',
         components: {
             TopBar,
-            GlobalHuntList
+            GlobalHuntList,
+            'vue-select': VueNextSelect,
         },
         setup() {
             const uid = ref('')
             const username = ref('')
             const isLoggedIn = ref(false)
             const auth = getAuth()
+            const options = ref([])
+
+            
 
             // runs after firebase is initialized
             auth.onAuthStateChanged(function(user) {
@@ -107,7 +128,7 @@ import TopBar from "../components/TopBar.vue"
             }
 
             const games = ref([])
-            const pokemon = ref('')
+            const pokemon = ref([])
             const pokemonApiLink = ref ('')
             const pokemonName = ref('')
             const chroma = ref(false)
@@ -116,8 +137,9 @@ import TopBar from "../components/TopBar.vue"
             const game = ref('')
             
             const getPokeInfo = (e) => {
+                
                 games.value = []
-                pokemonApiLink.value = e.target.value
+                pokemonApiLink.value = pokemon.value.url
                 axios.get(pokemonApiLink.value)
                     .then(response => {
                         //console.log(response)
@@ -136,6 +158,7 @@ import TopBar from "../components/TopBar.vue"
                     counter: 0,
                     game: game.value,
                     pokemon: pokemonApiLink.value,
+                    latestUpdate: Date.now(),
                     pokemonName: pokemonName.value,
                     status: 'running',
                     sprite: sprite.value,
@@ -160,8 +183,8 @@ import TopBar from "../components/TopBar.vue"
                         }
                         //console.log(pokemons.value[0])
                     })   
-                        pokemons.value = pokemons.value.sort()
-                        console.log(pokemons.value)
+
+
                 })
 
 

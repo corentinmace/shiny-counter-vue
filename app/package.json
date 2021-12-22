@@ -12,7 +12,10 @@
     "os": "^0.1.2",
     "pokedex-promise-v2": "^4.0.0",
     "vue": "^3.2.16",
-    "vue-router": "^4.0.12"
+    "vue-next-select": "^2.10.2",
+    "vue-router": "^4.0.12",
+    "vue-search-select": "^2.9.5",
+    "vue-select": "^3.16.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",

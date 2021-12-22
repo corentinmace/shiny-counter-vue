@@ -72,11 +72,11 @@
 
 
 <template>
-<div v-if="!isMounted" class="w-screen h-screen bg-text_black absolute z-10 flex justify-center items-center flex-col">
+<div v-if="!isMounted" class="w-screen h-screen bg-text_black absolute z-50 flex justify-center items-center flex-col">
   <img class="w-10 h-10" src="https://media3.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif" alt="">
   <p class="text-text_primary font-bold p-5">Now Loading..</p>
 </div>
-<div class="bg-secondary fixed bottom-0 w-screen text-text_primary flex justify-evenly h-15 py-3">
+<div class="bg-secondary fixed bottom-0 w-screen text-text_primary flex justify-evenly h-15 py-3 z-40">
       <router-link to="/" active-class="opacity-100" class="lg:mt-0 text-xs flex flex-col justify-center items-center opacity-30">
         <HomeIcon class="w-6 h-6 m-1 filter invert" />
         Home
